@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ ! -d /usr/local/bin ]; then
+	echo 'No /usr/local/bin found, creating.'
+	echo '
+	do shell script "mkdir -p /usr/local/bin/ && chown $USER /usr/local/bin" with administrator privileges
+	' | osascript
+fi
+
+if [ ! -f /usr/local/bin/kivy ]; then
+	echo '
+	do shell script "ln -s /Applications/Kivy.app/Contents/Resources/script /usr/local/bin/kivy" with administrator privileges
+	tell application "System Events"
+        activate
+		display dialog "Created symlink 'kivy' in '/usr/local/bin' to link to Kivy in Applications folder" buttons {"Ok"}
+	end tell
+	' | osascript
+else
+	echo '
+	tell application "System Events"
+        activate
+		display dialog "Kivy symlink is already installed" buttons {"Ok"}
+	end tell
+	' | osascript
+fi
