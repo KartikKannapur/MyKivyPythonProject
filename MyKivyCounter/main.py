@@ -1,3 +1,4 @@
+#File name : main.py
 import kivy
 kivy.require('1.0.1')
 
@@ -20,7 +21,8 @@ class ButtonDec():
         global count
         count -= 1
         print('The button <%s> is being pressed' % instance.text) 
-        print count       
+        print count
+        
         
 class MyApp(App):
     def build(self):
@@ -32,6 +34,7 @@ class MyApp(App):
         
         btn_1.bind(on_press=ButtonInc.callback)
         btn_2.bind(on_press=ButtonDec.callback)
+        print Label(text = 'count')
         return layout
         
 if __name__ == '__main__':
